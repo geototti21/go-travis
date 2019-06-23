@@ -10,7 +10,6 @@ func TestNew(t *testing.T) {
 	assert.Equal(t, &App{Name: "my-name", Version: 3}, app)
 }
 
-
 func TestNewV1(t *testing.T) {
 	app := NewV1("my-name")
 	assert.Equal(t, &App{Name: "my-name", Version: 1}, app)
