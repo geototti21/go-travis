@@ -2,18 +2,24 @@ language: go
 
 go:
 - "1.12.x"
+
+# Active Go module mode
 env:
 - GO111MODULE=on
 
+# Install the golangci-lint binary
 before_install:
 - curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.17.1
 
+# Download the go modules
 install:
 - go mod download
 
+# Run our tests with coverage output and the linter
 script:
 - go test ./... -v -coverprofile coverage.txt -covermode count -coverpkg ./...
 - golangci-lint run ./...
 
+# Send the code coverage to Codecov
 after_script:
 - bash <(curl -s https://codecov.io/bash)
